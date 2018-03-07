@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Beer;
+use App\Repository\BeerRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,15 +11,16 @@ use Symfony\Component\HttpFoundation\Response;
 class BeerController extends Controller
 {
     /**
-     * @Route("/beer", name="beer_show")
+     * @Route("/beer/list", name="beer_list")
      */
-    public function showAction()
+    public function listAction()
     {
-        $beer = new Beer(1, 'Coors Light', 'Coors Light, made in the mountains', 'Photo', 'Coors Light is a drink', 'Some ingredients', 'Price range');
+        $beerRepository = new BeerRepository();
+        $beers = $beerRepository->findAll();
 
-        $template = 'beer/show.html.twig';
+        $template = 'beer/list.html.twig';
         $args = [
-            'beer' => $beer
+            'beers' => $beers
         ];
         return $this->render($template, $args);
     }
