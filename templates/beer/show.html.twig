@@ -1,0 +1,21 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Beer SHOW page</h1>
+
+    <p>
+        id = {{ beer.id }}
+        <br>
+        title = {{ beer.title }}
+        <br>
+        summary = {{ beer.summary }}
+        <br>
+        photo = {{ beer.photo }}
+        <br>
+        description = {{ beer.desc }}
+        <br>
+        list of ingredients = {{ beer.ingredients }}
+        <br>
+        price range = {{ beer.price }}
+    </p>
+{% endblock %}
