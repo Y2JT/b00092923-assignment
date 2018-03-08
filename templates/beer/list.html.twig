@@ -19,6 +19,7 @@
             list of ingredients = {{ beer.ingredients }}
             <br>
             price range = {{ beer.price }}
+            <a href="{{ url('beer_show', {id : beer.id}) }}">(details)</a>
         </li>
         {% endfor %}
     </ul>

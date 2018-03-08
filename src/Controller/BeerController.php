@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class BeerController extends Controller
 {
     /**
-     * @Route("/beer/list", name="beer_list")
+     * @Route("/beer", name="beer_list")
      */
     public function listAction()
     {
@@ -22,6 +22,26 @@ class BeerController extends Controller
         $args = [
             'beers' => $beers
         ];
+        return $this->render($template, $args);
+    }
+
+    /**
+     * @Route("/beer/{id}", name="beer_show")
+     */
+    public function showAction($id)
+    {
+        $beerRepository = new BeerRepository();
+        $beer = $beerRepository->find($id);
+
+        $template = 'beer/show.html.twig';
+        $args = [
+            'beer' => $beer
+        ];
+
+        if(!$beer){
+            $template = 'error/404.html.twig';
+        }
+
         return $this->render($template, $args);
     }
 }

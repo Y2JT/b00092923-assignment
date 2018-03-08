@@ -33,4 +33,13 @@ class BeerRepository
     {
         return $this->beers;
     }
+
+    public function find($id)
+    {
+        if(array_key_exists($id, $this->beers)){
+            return $this->beers[$id];
+        }    else{
+            return null;
+        }
+    }
 }
