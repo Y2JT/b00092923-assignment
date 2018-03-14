@@ -1,44 +1,51 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 07/03/2018
- * Time: 23:08
- */
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\BeerRepository")
+ */
 
 class Beer
 {
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private $id;
-    private $title;
-    private $summary;
-    private $photo;
-    private $desc;
-    private $ingredients;
-    private $price;
 
     /**
-     * Beer constructor.
-     * @param $id
-     * @param $title
-     * @param $summary
-     * @param $photo
-     * @param $desc
-     * @param $ingredients
-     * @param $price
+     * @ORM\Column(type="string")
      */
-    public function __construct($id, $title, $summary, $photo, $desc, $ingredients, $price)
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->summary = $summary;
-        $this->photo = $photo;
-        $this->desc = $desc;
-        $this->ingredients = $ingredients;
-        $this->price = $price;
-    }
+    private $title;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $summary;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $photo;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $desc;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $ingredients;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $price;
 
     /**
      * @return mixed
@@ -46,14 +53,6 @@ class Beer
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -67,7 +66,7 @@ class Beer
     /**
      * @param mixed $title
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }
@@ -83,7 +82,7 @@ class Beer
     /**
      * @param mixed $summary
      */
-    public function setSummary($summary)
+    public function setSummary($summary): void
     {
         $this->summary = $summary;
     }
@@ -99,7 +98,7 @@ class Beer
     /**
      * @param mixed $photo
      */
-    public function setPhoto($photo)
+    public function setPhoto($photo): void
     {
         $this->photo = $photo;
     }
@@ -115,7 +114,7 @@ class Beer
     /**
      * @param mixed $desc
      */
-    public function setDesc($desc)
+    public function setDesc($desc): void
     {
         $this->desc = $desc;
     }
@@ -131,7 +130,7 @@ class Beer
     /**
      * @param mixed $ingredients
      */
-    public function setIngredients($ingredients)
+    public function setIngredients($ingredients): void
     {
         $this->ingredients = $ingredients;
     }
@@ -147,7 +146,7 @@ class Beer
     /**
      * @param mixed $price
      */
-    public function setPrice($price)
+    public function setPrice($price): void
     {
         $this->price = $price;
     }
