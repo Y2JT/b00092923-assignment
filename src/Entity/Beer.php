@@ -50,14 +50,6 @@ class Beer
     /**
      * @return mixed
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getTitle()
     {
         return $this->title;
@@ -149,5 +141,13 @@ class Beer
     public function setPrice($price): void
     {
         $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
