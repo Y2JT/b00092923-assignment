@@ -58,7 +58,7 @@ class Beer
     /**
      * @param mixed $title
      */
-    public function setTitle($title): void
+    public function setTitle($title)
     {
         $this->title = $title;
     }
@@ -74,7 +74,7 @@ class Beer
     /**
      * @param mixed $summary
      */
-    public function setSummary($summary): void
+    public function setSummary($summary)
     {
         $this->summary = $summary;
     }
@@ -90,7 +90,7 @@ class Beer
     /**
      * @param mixed $photo
      */
-    public function setPhoto($photo): void
+    public function setPhoto($photo)
     {
         $this->photo = $photo;
     }
@@ -106,7 +106,7 @@ class Beer
     /**
      * @param mixed $desc
      */
-    public function setDesc($desc): void
+    public function setDesc($desc)
     {
         $this->desc = $desc;
     }
@@ -122,7 +122,7 @@ class Beer
     /**
      * @param mixed $ingredients
      */
-    public function setIngredients($ingredients): void
+    public function setIngredients($ingredients)
     {
         $this->ingredients = $ingredients;
     }
@@ -138,7 +138,7 @@ class Beer
     /**
      * @param mixed $price
      */
-    public function setPrice($price): void
+    public function setPrice($price)
     {
         $this->price = $price;
     }

@@ -6,6 +6,7 @@ use App\Entity\Beer;
 use App\Repository\BeerRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class BeerController extends Controller
@@ -108,5 +109,32 @@ class BeerController extends Controller
         return $this->redirectToRoute('beer_show', [
             'id' => $beer->getId()
         ]);
+    }
+
+    /**
+     * @Route("/beer/new", name="beer_new_form")
+     */
+    public function newFormAction()
+    {
+        $argsArray = [
+        ];
+
+        $templateName = 'beer/new';
+        return $this->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
+     * @Route("/beer/processNewForm", name="beer_process_new_form")
+     */
+    public function processNewFormAction(Request $request)
+    {
+        $title = $request->request->get('title');
+        $summary = $request->request->get('summary');
+        $photo = $request->request->get('photo');
+        $desc = $request->request->get('desc');
+        $ingredients = $request->request->get('ingredients');
+        $price = $request->request->get('price');
+
+        return $this->createAction($title, $summary, $photo, $desc, $ingredients, $price);
     }
 }
