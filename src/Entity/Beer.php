@@ -20,47 +20,65 @@ class Beer
     /**
      * @ORM\Column(type="string")
      */
-    private $title;
+    private $name;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $description;
 
     /**
      * @ORM\Column(type="string")
      */
     private $summary;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $photo;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $desc;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $ingredients;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $price;
 
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getId()
     {
-        return $this->title;
+        return $this->id;
     }
 
     /**
-     * @param mixed $title
+     * @param mixed $id
      */
-    public function setTitle($title)
+    public function setId($id)
     {
-        $this->title = $title;
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**
@@ -82,49 +100,17 @@ class Beer
     /**
      * @return mixed
      */
-    public function getPhoto()
+    public function getImage()
     {
-        return $this->photo;
+        return $this->image;
     }
 
     /**
-     * @param mixed $photo
+     * @param mixed $image
      */
-    public function setPhoto($photo)
+    public function setImage($image)
     {
-        $this->photo = $photo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDesc()
-    {
-        return $this->desc;
-    }
-
-    /**
-     * @param mixed $desc
-     */
-    public function setDesc($desc)
-    {
-        $this->desc = $desc;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIngredients()
-    {
-        return $this->ingredients;
-    }
-
-    /**
-     * @param mixed $ingredients
-     */
-    public function setIngredients($ingredients)
-    {
-        $this->ingredients = $ingredients;
+        $this->image = $image;
     }
 
     /**
@@ -142,12 +128,12 @@ class Beer
     {
         $this->price = $price;
     }
-
     /**
-     * @return mixed
+     * @ORM\Column(type="string")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $image;
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $price;
 }
