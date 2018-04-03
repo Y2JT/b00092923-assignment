@@ -6,35 +6,52 @@ use App\Entity\Beer;
 use App\Repository\BeerRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class BeerController extends Controller
 {
     /**
-     * @Route("/beer/create/{title}/{summary}/{photo}/{desc}/{ingredients}/{price}", name="beer_create")
+     * @Route("/beer/new", name="beer_new", methods={"POST", "GET"})
      */
-    public function createAction($title, $summary, $photo, $desc, $ingredients, $price)
+    public function newAction(Request $request)
     {
         $beer = new Beer();
-        $beer->setTitle($title);
-        $beer->setSummary($summary);
-        $beer->setPhoto($photo);
-        $beer->setDesc($desc);
-        $beer->setIngredients($ingredients);
-        $beer->setPrice($price);
 
-        // entity manager
-        $em = $this->getDoctrine()->getManager();
+        $form = $this->createFormBuilder($beer)
+            ->add('title', TextType::class)
+            ->add('summary', TextType::class)
+            ->add('photo', TextType::class)
+            ->add('desc', TextType::class)
+            ->add('ingredients', TextType::class)
+            ->add('price', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Create Beer'))->getForm();
 
-        $em->persist($beer);
+        $form->handleRequest($request);
 
-        $em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            return $this->createAction($beer);
+        }
 
-        return new Response('Created new beer with id ' .$beer->getId());
+        $template = 'beer/new.html.twig';
+        $argsArray = [
+            'form' => $form->createView(),
+        ];
+
+        return $this->render($template, $argsArray);
 
     }
 
+    public function createAction($beer)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($beer);
+        $em->flush();
+
+        return $this->listAction($beer->getId());
+
+    }
 
     /**
      * @Route("/beer", name="beer_list")
@@ -46,47 +63,43 @@ class BeerController extends Controller
 
         $template = 'beer/list.html.twig';
         $args = [
-            'beers' => $beers
+            'beers' => $beers,
         ];
         return $this->render($template, $args);
     }
 
     /**
-     * @Route("/beer/{id}", name="beer_show")
+     * @Route("/beer/delete/{id}", name="beer_delete")
      */
-    public function showAction($id)
+    public function deleteAction(Beer $beer)
     {
         $em = $this->getDoctrine()->getManager();
-        $beer = $em->getRepository('App:Beer')->find($id);
+        $beerRepository = $this->getDoctrine()->getRepository('App:Beer');
 
+        $id = $beer->getId();
+        $em->remove($beer);
+        $em->flush();
+
+        return $this->listAction();
+    }
+
+    /**
+     * @Route("/beer/{id}", name="beer_show")
+     */
+    public function showAction(Beer $beer)
+    {
         $template = 'beer/show.html.twig';
         $args = [
             'beer' => $beer
         ];
 
-        if(!$beer){
+        if (!$beer) {
             $template = 'error/404.html.twig';
         }
 
         return $this->render($template, $args);
     }
 
-    /**
-     * @Route("/beer/delete/{id}")
-     */
-    public function deleteAction($id)
-    {
-        // entity manager
-        $em = $this->getDoctrine()->getManager();
-        $beerRepository = $this->getDoctrine()->getRepository('App:Beer');
-        // find thge student with this ID
-        $beer = $beerRepository->find($id);
-        // tells Doctrine you want to (eventually) delete the Student (no queries yet)
-        $em->remove($beer);
-        // actually executes the queries (i.e. the DELETE query)
-        $em->flush();
-        return new Response('Deleted beer with id '.$id);
-    }
     /**
      * @Route("/beer/update/{id}/{newTitle}/{newSummary}/{newPhoto}/{newDesc}/{newIngredients}/{newPrice}")
      */
@@ -96,7 +109,7 @@ class BeerController extends Controller
         $beer = $em->getRepository('App:Beer')->find($id);
         if (!$beer) {
             throw $this->createNotFoundException(
-                'No beer found for id '.$id
+                'No beer found for id ' . $id
             );
         }
         $beer->setTitle($newTitle);
@@ -109,32 +122,5 @@ class BeerController extends Controller
         return $this->redirectToRoute('beer_show', [
             'id' => $beer->getId()
         ]);
-    }
-
-    /**
-     * @Route("/beer/new", name="beer_new_form")
-     */
-    public function newFormAction()
-    {
-        $argsArray = [
-        ];
-
-        $templateName = 'beer/new';
-        return $this->render($templateName . '.html.twig', $argsArray);
-    }
-
-    /**
-     * @Route("/beer/processNewForm", name="beer_process_new_form")
-     */
-    public function processNewFormAction(Request $request)
-    {
-        $title = $request->request->get('title');
-        $summary = $request->request->get('summary');
-        $photo = $request->request->get('photo');
-        $desc = $request->request->get('desc');
-        $ingredients = $request->request->get('ingredients');
-        $price = $request->request->get('price');
-
-        return $this->createAction($title, $summary, $photo, $desc, $ingredients, $price);
     }
 }

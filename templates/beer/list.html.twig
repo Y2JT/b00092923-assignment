@@ -3,28 +3,30 @@
 {% block body %}
     <h1>Beer LIST page</h1>
 
-    <ul>
-        {% for beer in beers %}
-        <li>
-            id = {{ beer.id }}
-            <br>
-            title = {{ beer.title }}
-            <br>
-            summary = {{ beer.summary }}
-            <br>
-            photo = {{ beer.photo }}
-            <br>
-            description = {{ beer.desc }}
-            <br>
-            list of ingredients = {{ beer.ingredients }}
-            <br>
-            price range = {{ beer.price }}
-            <a href="{{ url('beer_show', {id : beer.id}) }}">(details)</a>
-        </li>
-        {% endfor %}
-    </ul>
-    <hr>
-    <a href="{{ path('beer_new_form') }}">
+    <a href="{{ path('beer_new') }}">
         create NEW beer
     </a>
+    <hr>
+    {# -------------------------------------- #}
+
+    <<ul>
+    {% for beer in beers %}
+        <li
+                {% if highlightId is defined %}
+                    {% if beer.id == highlightId %}
+                        class="highlight"
+                    {% endif %}
+                {% endif %}
+        >
+            id = {{ beer.id }}
+            <br>
+            name = {{ beer.Title }}
+            <br>
+            <a href="{{ url('beer_show', {id : beer.id} ) }}">(details)</a>
+            <br>
+            <a href="{{ url('beer_delete', {id : beer.id} ) }}">(DELETE)</a>
+
+        </li>
+    {% endfor %}
+</ul>
 {% endblock %}
