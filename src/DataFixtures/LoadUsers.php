@@ -22,13 +22,15 @@ class LoadUsers extends Fixture
     public function load(ObjectManager $manager)
     {
         // create objects
-        $userUser = $this->createUser('user', 'user');
+        $userUser = $this->createUser('user', 'user', ['ROLE_USER']);
         $userAdmin = $this->createUser('admin', 'admin', ['ROLE_ADMIN']);
-        $userMatt = $this->createUser('matt', 'smith', ['ROLE_ADMIN']);
+        $userJoey = $this->createUser('joey', 'tierney', ['ROLE_SUPER_ADMIN']);
+        $userMatt = $this->createUser('matt', 'smith', ['ROLE_SUPER_ADMIN']);
 
         // store to DB
         $manager->persist($userUser);
         $manager->persist($userAdmin);
+        $manager->persist($userJoey);
         $manager->persist($userMatt);
         $manager->flush();
     }
@@ -40,7 +42,7 @@ class LoadUsers extends Fixture
      *
      * @return Users
      */
-    private function createUser($username, $plainPassword, $roles = ['ROLE_USER']):Users
+    private function createUser($username, $plainPassword, $roles = ['ROLE_PUBLIC']):Users
     {
         $user = new Users();
         $user->setUsername($username);

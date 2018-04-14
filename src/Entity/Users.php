@@ -80,7 +80,7 @@ class Users implements UserInterface, \Serializable
      * Set roles
      *
      * @param array $roles *
-     * @return User
+     * @return Users
      */
     public function setRoles($roles)
     {
