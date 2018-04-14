@@ -23,3 +23,5 @@ security:
             logout:
                 path:   /logout
                 target: /
+
+            access_denied_handler: App\Security\AccessDeniedHandler
