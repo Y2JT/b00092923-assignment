@@ -37,6 +37,14 @@
             <li>
                 <a href="{{ url('admin_home') }}">Admin Home</a>
             </li>
+            <li>
+                <a href="{{ url('beer_new') }}">Create New Product</a>
+            </li>
+        {% endif %}
+        {% if is_granted('ROLE_USER') %}
+        <li>
+            <a href="{{ url('beer_new') }}">Create New Product</a>
+        </li>
         {% endif %}
     </ul>
 </nav>
