@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <style>
+        header {
+            text-align: right;
+            border-bottom: 0.5rem solid black;
+            padding: 1rem;
+        }
+    </style>
+
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+<header>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        Username:
+        <strong>{{ app.user.username }}</strong>
+        <br>
+        <a href="{{ url('logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url('login') }}">Login</a>
+    {% endif %}
+</header>
+
+<nav>
+    <ul>
+        <li>
+            <a href="{{ url('homepage') }}">Home</a>
+        </li>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ url('admin_home') }}">Admin Home</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
 </html>
