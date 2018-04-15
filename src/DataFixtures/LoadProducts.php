@@ -12,7 +12,7 @@ class LoadProducts extends Fixture
     public function load(ObjectManager $manager)
     {
         // create objects
-        $beerCoors = $this->createBeer('Coors Light', 'A refreshing light beer', 'Coors Light is a 4.2% ABV light beer brewed in Golden, Colorado; Albany, Georgia; Elkton, Virginia; Fort Worth, Texas; Irwindale, California; Moncton, New Brunswick; and Milwaukee, Wisconsin', 'images/beer/coorslight.jpg', 'Water, barley malt, corn, yeast and hops', '4.57');
+        $beerCoors = $this->createBeer('Coors Light', 'A refreshing light beer', 'Coors Light is a 4.2% ABV light beer brewed in Golden, Colorado; Albany, Georgia; Elkton, Virginia; Fort Worth, Texas; Irwindale, California; Moncton, New Brunswick; and Milwaukee, Wisconsin', 'coorslight', 'Water, barley malt, corn, yeast and hops', '4.57');
 
         // store to DB
         $manager->persist($beerCoors);

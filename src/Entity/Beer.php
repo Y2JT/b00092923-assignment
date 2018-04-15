@@ -37,7 +37,6 @@ class Beer
      */
     private $ingredients;
 
-
     /**
      * @return mixed
      */
@@ -119,16 +118,15 @@ class Beer
     }
 
     /**
-     * @return mixed
+     * @ORM\Column(type="string")
      */
+    private $image;
+
     public function getImage()
     {
         return $this->image;
     }
 
-    /**
-     * @param mixed $image
-     */
     public function setImage($image)
     {
         $this->image = $image;
@@ -149,10 +147,7 @@ class Beer
     {
         $this->price = $price;
     }
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $image;
+
     /**
      * @ORM\Column(type="float")
      */
