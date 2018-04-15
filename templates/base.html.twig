@@ -24,22 +24,23 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a style="color: #fff;" class="nav-link" href="{{ url('homepage') }}">Home</a>
+                <a style="color: #fff;" class="nav-link" href="{{ url('homepage') }}"> <i class="fa fa-home" aria-hidden="true"></i> Home</a>
             </li>
             <li class="nav-item">
-                <a style="color: #fff;" class="nav-link" href="{{ url('beer_index') }}">List of Products</a>
+                <a style="color: #fff;" class="nav-link" href="{{ url('beer_index') }}"><i class="fa fa-list" aria-hidden="true"></i> List of Products</a>
             </li>
             {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
-                <a style="color: #fff;" class="nav-link" href="{{ url('admin_home') }}">Admin Home</a>
+                <a style="color: #fff;" class="nav-link" href="{{ url('admin_home') }}"><i class="fa fa-home" aria-hidden="true"></i> Admin Home</a>
             </li>
             {% endif %}
             {% if is_granted('ROLE_USER') %}
             <li class="nav-item">
-                <a style="color: #fff;" class="nav-link" href="{{ url('beer_new') }}">Create New Product</a>
+                <a style="color: #fff;" class="nav-link" href="{{ url('beer_new') }}"><i class="fa fa-plus" aria-hidden="true"></i> New Product</a>
             </li>
             {% endif %}
             <li class="nav-link">
+                <i class="fa fa-user" aria-hidden="true"></i>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     Welcome:
                     <strong>{{ app.user.username }}</strong>
