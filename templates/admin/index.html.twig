@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block body %} <h1>Admin home</h1>
-    here is the secret code to the safe:
-    007123
+
+{% block body %}
+
+    <h1>Welcome Admin: {{ app.user.username }}</h1>
+    <h3>What Would You Like to Do?</h3>
+    <ul>
+        <li>
+            <a href="{{ path('admin_crud') }}">CRUD</a>
+        </li>
+    </ul>
+
+
 {% endblock %}

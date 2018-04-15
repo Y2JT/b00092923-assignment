@@ -99,7 +99,7 @@ class BeerController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($beer);
-        $em->flush();
+        $em-flush();
 
         return $this->redirectToRoute('beer_index');
     }

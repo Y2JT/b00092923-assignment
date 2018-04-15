@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>Edit Beer</h1>
+    <h1>Editing {{ beer.name }}</h1>
 
     <p>{% include 'beer/_form.html.twig' with {'form': form, 'button_label': 'Edit'} only %}</p>
 
