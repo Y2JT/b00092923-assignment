@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Ale Yeah!{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <style>
-        header {
-            text-align: right;
-            border-bottom: 0.5rem solid black;
-            padding: 1rem;
-        }
-    </style>
-
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/styles.css">
+    {% endblock %}
 </head>
-<body>
 
+<body>
 <header>
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         Username:
@@ -26,39 +23,52 @@
         <a href="{{ url('login') }}">Login</a>
     {% endif %}
 </header>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-bg mb-5">
+    <a style="margin-left: 75px;" class="navbar-brand space-brand" href="#">
+        Ale Yeah - Beer Reviews
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<nav>
-    <ul>
-        <li>
-            <a href="{{ url('homepage') }}">Home</a>
-        </li>
-        <li>
-            <a href="{{ url('beer_index') }}">List of Products</a>
-        </li>
-
-        {% if is_granted('ROLE_ADMIN') %}
-            <li>
-                <a href="{{ url('admin_home') }}">Admin Home</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a style="color: #fff;" class="nav-link" href="{{ url('homepage') }}">Home</a>
             </li>
-            <li>
-                <a href="{{ url('beer_new') }}">Create New Product</a>
+            <li class="nav-item">
+                <a style="color: #fff;" class="nav-link" href="{{ url('beer_index') }}">List of Products</a>
             </li>
-            <li>
-                <a href="{{ url('beer_index') }}">List of Products</a>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item">
+                <a style="color: #fff;" class="nav-link" href="{{ url('admin_home') }}">Admin Home</a>
             </li>
-        {% endif %}
-        {% if is_granted('ROLE_USER') %}
-        <li>
-            <a href="{{ url('beer_new') }}">Create New Product</a>
-        </li>
-            <li>
-                <a href="{{ url('beer_index') }}">List of Products</a>
+            {% endif %}
+            {% if is_granted('ROLE_USER') %}
+            <li class="nav-item">
+                <a style="color: #fff;" class="nav-link" href="{{ url('beer_new') }}">Create New Product</a>
             </li>
-        {% endif %}
-    </ul>
+            {% endif %}
+        </ul>
+    </div>
 </nav>
 
-{% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script>
+        $('.dropdown-toggle').dropdown();
+    </script>
+{% endblock %}
 </body>
 </html>
