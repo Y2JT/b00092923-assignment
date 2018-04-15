@@ -18,6 +18,7 @@ class BeerType extends AbstractType
             ->add('summary')
             ->add('image')
             ->add('description')
+            ->add('ingredients')
             ->add('price');
 
     }

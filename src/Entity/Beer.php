@@ -32,6 +32,11 @@ class Beer
      */
     private $summary;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $ingredients;
+
 
     /**
      * @return mixed
@@ -95,6 +100,22 @@ class Beer
     public function setSummary($summary)
     {
         $this->summary = $summary;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIngredients()
+    {
+        return $this->ingredients;
+    }
+
+    /**
+     * @param mixed $ingredients
+     */
+    public function setIngredients($ingredients)
+    {
+        $this->ingredients = $ingredients;
     }
 
     /**

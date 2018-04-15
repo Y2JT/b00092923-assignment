@@ -14,6 +14,7 @@
             <th>Summary</th>
             <th>Image</th>
             <th>Description</th>
+            <th>Ingredients</th>
             <th>Price</th>
             <th>Actions</th>
 
@@ -27,6 +28,7 @@
                 <td>{{ beer.summary }}</td>
                 <td>{{ beer.image }}</td>
                 <td>{{ beer.description }}</td>
+                <td>{{ beer.ingredients }}</td>
                 <td>{{ beer.price }}</td>
                 <td>
                     <a href="{{ path('beer_show', {'id': beer.id}) }}">Show</a>
