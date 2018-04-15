@@ -6,7 +6,7 @@
 
     <h1>Products</h1>
     <br>
-    <table>
+    <table class="table table-striped">
         <thead>
         <tr>
             <th>Id</th>
@@ -15,7 +15,8 @@
             <th>Image</th>
             <th>Description</th>
             <th>Price</th>
-            <th>actions</th>
+            <th>Actions</th>
+
         </tr>
         </thead>
         <tbody>
@@ -27,20 +28,23 @@
                 <td>{{ beer.image }}</td>
                 <td>{{ beer.description }}</td>
                 <td>{{ beer.price }}</td>
-
                 <td>
-                    <a href="{{ path('beer_show', {'id': beer.id}) }}">show</a>
-                    <a href="{{ path('beer_edit', {'id': beer.id}) }}">edit</a>
+                    <a href="{{ path('beer_show', {'id': beer.id}) }}">Show</a>
+            {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('beer_edit', {'id': beer.id}) }}">Edit</a>
+            {% endif %}
                 </td>
             </tr>
 
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">No Records Found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('beer_new') }}">Create new</a>
+    {% if is_granted('ROLE_USER') %}
+    <a href="{{ path('beer_new') }}">Craft New Beer</a>
+    {% endif %}
 
 {% endblock %}

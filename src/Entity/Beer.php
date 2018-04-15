@@ -136,4 +136,5 @@ class Beer
      * @ORM\Column(type="float")
      */
     private $price;
+
 }
