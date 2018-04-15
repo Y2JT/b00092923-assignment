@@ -61,7 +61,7 @@ class BeerController extends Controller
     public function show(Beer $beer)
     {
         return $this->render('beer/show.html.twig', [
-            'product' => $beer,
+            'beer' => $beer,
         ]);
     }
 
@@ -99,7 +99,7 @@ class BeerController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($beer);
-        $em-flush();
+        $em->flush();
 
         return $this->redirectToRoute('beer_index');
     }
