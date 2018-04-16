@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <th>Image</th>
-            <td><img src="/images/{{ beer.image }}.jpg" alt="{{ beer.name }}"></td>
+            <td><img src="/images/beer/{{ beer.image }}.png" alt="{{ beer.name }}" width="150" height="150"/></td>
         </tr>
         <tr>
             <th>Description</th>
@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <th>Price</th>
-            <td>{{ beer.price }}</td>
+            <td>€{{ beer.price }}</td>
         </tr>
     </table>
     {% if is_granted('ROLE_USER') %}

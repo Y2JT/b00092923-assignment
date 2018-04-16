@@ -26,10 +26,10 @@
                 <td>{{ beer.id }}</td>
                 <td>{{ beer.name }}</td>
                 <td>{{ beer.summary }}</td>
-                <td><img src="/images/{{ beer.image }}.jpeg" alt="{{ beer.name }}" width="70" height="150" /></td>
+                <td><img src="/images/beer/{{ beer.image }}.png" alt="{{ beer.name }}" width="100" height="100" /></td>
                 <td>{{ beer.description }}</td>
                 <td>{{ beer.ingredients }}</td>
-                <td>{{ beer.price }}</td>
+                <td>€{{ beer.price }}</td>
                 <td>
                     <a href="{{ path('beer_show', {'id': beer.id}) }}">Show</a>
             {% if is_granted('ROLE_USER') %}
