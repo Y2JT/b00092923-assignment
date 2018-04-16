@@ -38,7 +38,9 @@
     </table>
     {% if is_granted('ROLE_USER') %}
     <a href="{{ path('beer_edit', {'id': beer.id}) }}">Edit</a>
+        {% endif %}
 
+    {% if is_granted('ROLE_ADMIN') %}
     {% include 'beer/_delete_form.html.twig' with {'identifier': beer.id} only %}
     {% endif %}
 {% endblock %}

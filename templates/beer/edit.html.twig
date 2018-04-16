@@ -8,6 +8,8 @@
 
     <p>{% include 'beer/_form.html.twig' with {'form': form, 'button_label': 'Save'} only %}</p>
 
+    {% if is_granted('ROLE_ADMIN') %}
     <p>{% include 'beer/_delete_form.html.twig' with {'identifier': beer.id} only %}</p>
+        {% endif %}
 
 {% endblock %}
