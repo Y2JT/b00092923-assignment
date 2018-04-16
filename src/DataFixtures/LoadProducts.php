@@ -25,7 +25,12 @@ class LoadProducts extends Fixture
         $beerCarling = $this->createBeer('Carling Larger',"I'm a Pale Lager brewed in Canada.", 'A traditional bottom fermenting lager utilizing Canadian barley malts and selected aroma and bittering hops to produce a fine, clean, crisp refreshing beer.','carling', 'Burton water, white Lager malt, English hops (varies), and yeast','14.50');
         $beerMurphy = $this->createBeer("Murphy's Irish Stout", "I'm a Stout brewed in Ireland.", "A uniquely smooth, creamy and wonderfully pallatable full bodied stout flavour with roasted chocolate and coffee undertones and a 'biscuity sweet' pure malt aroma.", 'murphys','Pale malt, roasted materials, water, hops and yeast','19.99');
         $beerBusch = $this->createBeer('Busch Lager',"I'm a Light Pale Lager brewed in Canada.",'First introduced in 1955, Busch is brewed, fermented and aged to create a smooth, refreshing taste at 4.7% alcohol by volume. Busch is an American-style lager, brewed in Canada with the Anheuser-Busch tradition of excellence.','busch','Premium hops, exceptional barley malt, fine grains and crisp water','9.99');
-
+        $beerMad = $this->createBeer('Mad Jack', "I'm a Malt brewed in Canada.", "Mad Jack is an apple lager crafted with a crisp apple taste that's light in body with a smooth, clean finish. Refreshingly different, it's so good it's crazy.", 'madjack','Malt liquor, carbonated water, glucos-fructose, malic acid, natural flavour, and barley','11.45');
+        $beerKeiths = $this->createBeer('Keiths', "I'm an Amber India Pale Ale Ale brewed in Canada.", 'Brewed in Halifax since 1820, India Pale Ale is light in colour and hopped in flavour. Only the lightest and finest barleys that produce a pale malt are used while the amounts of hops are increased so as to give a pronounced hop flavour.','keiths','Cider, water, natural flavour, sulphites, and caramel','5.99');
+        $beerBigRig = $this->createBeer('Big Rig Gold',"I'm an Ale brewed in Canada.", 'Our flagship beer is a refreshing golden brew that uses a blend of the finest Canadian and German malts giving it a smooth, mild body that balances the crisp, pleasant German hop finish.','bigriggold','Malt, yeast and water','2.99');
+        $beerMickeys = $this->createBeer('Mickeys',"I'm a Malt brewed in United States.", 'The colour is golden, the taste is full bodied and moderately bitter with a clean aftertaste.','mickeys','Malt','7.89');
+        $beerTom = $this->createBeer('Beaus Tom Green Beer',"I'm a Stout brewed in Canada.","Beau's and Canadian actor, comedian Tom Green have collaborated to create The Tom Green Beer. A milk stout, The Tom Green Beer displays flavours of chocolate and coffee, while delivering a creamy, velvety texture, and finishing with a mild sweetness.",'tomgreen',"Local spring water, organic barley malts, organic oats, organic lactose (milk), organic hops, brewer\'s yeast",'21.99');
+        $beerWhiteWater = $this->createBeer('Whitewater Midnight Stout',"I'm a Stout brewed in Canada.",'Stout is kayaker lingo for what most folk would call- really darned good. Midnight is a stout time to go for a paddle.','whitewater','Water, cider, yeast and malt','12.99');
 
         // store to DB
         $manager->persist($beerCoors);
@@ -41,6 +46,12 @@ class LoadProducts extends Fixture
         $manager->persist($beerCarling);
         $manager->persist($beerMurphy);
         $manager->persist($beerBusch);
+        $manager->persist($beerMad);
+        $manager->persist($beerKeiths);
+        $manager->persist($beerBigRig);
+        $manager->persist($beerMickeys);
+        $manager->persist($beerTom);
+        $manager->persist($beerWhiteWater);
         $manager->flush();
     }
 
